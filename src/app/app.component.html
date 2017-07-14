@@ -1,0 +1,75 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+	<h1>
+		{{title}}!
+	</h1>
+</div>
+<div id="confirmation">
+	<h3 [hidden]="confirmation==''">{{ confirmation }}</h3>
+</div>
+<!-- Registration form with requirements for each input field -->
+<div id="registration">
+	<form (submit)="onSubmit(); regForm.reset()" #regForm="ngForm">
+		<label for="firstName">First Name: </label>
+			<input type="text" name="firstName" minlength="4" [(ngModel)]='user.firstName' #firstName='ngModel' required />
+		<label for="lastName">Last Name: </label>
+			<input type="text" name="lastName" minlength="4" [(ngModel)]='user.lastName' #lastName='ngModel' required />
+		<label for="email">Email: </label>
+			<input type="email" name="email"
+			pattern="[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*" [(ngModel)]='user.email' #email='ngModel' required />
+		<label for="password">Password: </label>
+			<input type="password" name="password" [(ngModel)]='user.password' #password='ngModel' required />
+		<label for="pwConfirm">Password Confirmation: </label>
+			<input type="password" name="pwConfirm" minlength="8" [(ngModel)]='user.pwConfirm' #pwConfirm="ngModel" />
+		<label for="streetAddress">Street Address: </label>
+			<input type="text" name="streetAddress" [(ngModel)]='user.streetAddress' #streetAddress='ngModel' required />
+		<label for="aptNum">Unit/Apt #: </label>
+			<input type="text" name="aptNum" [(ngModel)]='user.aptNum'/>
+		<label for="city">City: </label>
+			<input type="text" name="city" [(ngModel)]='user.city' #city='ngModel' required />
+		<label for="state">State: </label>
+			<input type="text" name="state" maxlength="2" [(ngModel)]='user.state' #state='ngModel' required />
+		<label for="luck">I'm feeling lucky:</label>
+		<input class="radioButton" type="radio" name="lucky" value="yes" [(ngModel)]='user.lucky' #lucky='ngModel' /> Yes
+		<input class="radioButton" type="radio" name="lucky" value="no" [(ngModel)]='user.lucky' #lucky='ngModel' /> No
+		<button type="submit" [disabled]="!regForm.valid">Register</button>
+	</form>
+</div>
+<!-- Printing any errors based on conditions. .touched prevents errors from popping up right away. -->
+<div id="errors" [hidden]="regForm.pristine">
+		<ul>
+		<div *ngIf="firstName.touched && !firstName.valid">
+			<li *ngIf="firstName.errors.required">First Name is required</li>
+			<li *ngIf="firstName.errors.minlength">First Name must be at least 4 characters</li>
+		</div>
+		<div *ngIf="lastName.touched && !lastName.valid">
+			<li *ngIf="lastName.errors.required">Last Name is required</li>
+			<li *ngIf="lastName.errors.minlength">Last Name must be at least 4 characters</li>
+		</div>
+		<div *ngIf="email.touched && !email.valid">
+			<li *ngIf="email.errors.required">Email is required</li>
+			<li *ngIf="email.errors.pattern">Please enter a valid email address</li>
+		</div>
+		<div *ngIf="password.touched && !password.valid">
+			<li *ngIf="password.errors.required">Password is required</li>
+			<li *ngIf="password.errors.minlength">Password must be 8 characters long</li>
+		</div>
+			<li *ngIf=" pwConfirm.touched && user.password != user.pwConfirm">Passwords don't match!</li>
+			<li *ngIf="streetAddress.touched && !streetAddress.valid && streetAddress.errors.required">Street Address is required</li>
+			<li *ngIf="city.touched && !city.valid && city.errors.required">City is required</li>
+			<li *ngIf="state.touched && !state.valid && state.errors.required">State is required</li>
+		</ul>
+</div>
+
+	email: {{ email.errors | json }}
+	firstName: {{ firstName.errors | json }}
+	{{ firstName.valid | json }}
+<!-- <div id="json_tests">
+	form: {{ regForm.valid | json }}
+
+	{{ regForm | json }}
+
+ 	{{ lucky.errors | json}}
+	{{ user | json }}
+
+</div> -->

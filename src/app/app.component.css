@@ -1,0 +1,50 @@
+p, label, input {
+	display: block;
+	margin-left: 20px;
+}
+.radioButton {
+	display: inline;
+}
+
+button {
+	width: 80px;
+	height: 40px;
+	color: white;
+	background-color: blue;
+	border-radius: 10px;
+	display: block;
+	margin: 10px 20px;
+}
+#registration {
+	width: 300px;
+	display: inline-block;
+}
+#errors{
+	display: inline-block;
+	vertical-align: top;
+	width: 300px;
+	color: red;
+}
+#errors ul {
+	display: block;
+}
+
+
+/*.ng-touched{
+	color: blue;
+}
+
+.ng-errrors{
+	color: red;
+}
+.ng-untouched{
+	color: black;
+}
+
+.ng-valid {
+	color: black;
+}
+
+.ng-pristine {
+	color: black;
+}*/
