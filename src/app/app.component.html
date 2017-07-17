@@ -36,7 +36,7 @@
 	</form>
 </div>
 <!-- Printing any errors based on conditions. .touched prevents errors from popping up right away. -->
-<div id="errors" [hidden]="regForm.pristine">
+<div id="errors">
 		<ul>
 		<div *ngIf="firstName.touched && !firstName.valid">
 			<li *ngIf="firstName.errors.required">First Name is required</li>
